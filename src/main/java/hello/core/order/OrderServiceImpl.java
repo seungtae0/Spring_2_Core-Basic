@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService{
         this.discountPolicy = discountPolicy;
     }
 
-    /*DIP 위반 : 인터페이스가 아닌 구현에 의존하였음*/ /*해결하려면, 구현 객체를 누군가 대신 생성해서 주입해줘야 한다*/
+    /*DIP 위반 : 인터페이스(추상화)가 아닌 구현(구체화)에 의존하였음*/ /*해결하려면, 구현 객체를 누군가 대신 생성해서 주입해줘야 한다*/
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
