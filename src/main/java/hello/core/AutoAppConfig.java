@@ -1,5 +1,8 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -21,5 +24,14 @@ import org.springframework.context.annotation.FilterType;
         excludeFilters= @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 public class AutoAppConfig {
+
+    // 자동 빈 등록 vs 수동 빈 등록 --> 수동 빈이 자동 빈을 오버라이딩 해버린다.
+    // --> 현실에서는 개발자가 의도해서 이런 결과가 나오기 보다는 꼬여서 이런 경우가 대부분이다.
+    // --> 최근 스프링 부트에서는 자동 vs 수동 빈 등록 충돌 시, 에러가 나도록 하였다.
+    @Bean(name = "memoryMemberRepository")
+    MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+
 }
 
