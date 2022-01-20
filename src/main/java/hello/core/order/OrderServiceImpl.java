@@ -8,6 +8,7 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +25,7 @@ public class OrderServiceImpl implements OrderService{
     /* 의존관계주입 방법1 : 생성자 주입 */ // 불변 !  필수 ! 의존관계에 사용
     ///*  //롬복의 @RequiredArgsConstructor 를 사용하면 아래 코드를 작성한 것과 동일하므로 주석처리 가능
     @Autowired // 생성자 1개인 경우, @Autowired 생략해도 자동 의존관계 주입 됨. (스프링 빈만 해당)
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, /*@Qualifier("mainDiscountPolicy")*/ DiscountPolicy discountPolicy /*필드명을 rateDiscountPolicy 로 하여서 빈 이름 매칭 가능*/) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
